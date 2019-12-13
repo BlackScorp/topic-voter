@@ -1,0 +1,17 @@
+{
+  "name": "blackscorp/topicvoter",
+  "description": "Tool to vote for Video ideas",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "BlackScorp\\TopicVoter\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BlackScorp\\TopicVoter\\Test\\": "tests/"
+    }
+  }
+}
