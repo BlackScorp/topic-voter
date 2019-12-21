@@ -25,7 +25,7 @@ class ListTopicsUseCase
 
     public function process(ListTopicMessageStream $listTopicMessageStream):bool
     {
-        $entities = $this->repository->findAll();
+        $entities = $this->repository->findAll($listTopicMessageStream->getLimit(),$listTopicMessageStream->getOffset());
         if (count($entities) === 0) {
             return false;
         }

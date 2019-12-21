@@ -19,11 +19,13 @@ class MockTopicRepository implements TopicRepository
     }
 
     /**
+     * @param int $limit
+     * @param int $offset
      * @return TopicEntity[]|[]
      */
-    public function findAll():array
+    public function findAll(int $limit,int $offset):array
     {
-        return $this->entities;
+        return array_slice($this->entities,$offset,$limit);
     }
 
 }

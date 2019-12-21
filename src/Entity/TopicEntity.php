@@ -6,6 +6,10 @@ namespace BlackScorp\TopicVoter\Entity;
 
 class TopicEntity
 {
+    /**
+     * @var int
+     */
+    private int $id;
 
     /**
      * TopicEntity constructor.
@@ -14,7 +18,13 @@ class TopicEntity
      * @param string $string1
      * @param \DateTime $param
      */
-    public function __construct(int $int, string $string, string $string1, \DateTime $param)
+    public function __construct(int $id, string $titel, string $text, \DateTime $created)
     {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
