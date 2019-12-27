@@ -9,6 +9,9 @@ use BlackScorp\TopicVoter\Repository\TopicRepository;
 
 class MockTopicRepository implements TopicRepository
 {
+    /**
+     * @var TopicEntity[]
+     */
     private array $entities = [];
     /**
      * MockTopicRepository constructor.
@@ -26,6 +29,25 @@ class MockTopicRepository implements TopicRepository
     public function findAll(int $limit,int $offset):array
     {
         return array_slice($this->entities,$offset,$limit);
+    }
+
+    public function findBySlug(string $slug): ?TopicEntity
+    {
+        foreach($this->entities as $entity){
+            if($slug === $entity->getSlug()){
+                return $entity;
+            }
+        }
+        return null;
+    }
+
+    public function saveOrUpdate(TopicEntity $entity)
+    {
+       foreach ($this->entities as $index => $storageEntity){
+            if($storageEntity->getId() === $entity->getId()){
+                $this->entities[$index] = $entity;
+            }
+       }
     }
 
 }

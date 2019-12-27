@@ -22,7 +22,7 @@ class ViewTopicsUseCaseTest extends TestCase
 
     public function testListHasAnEntry(){
         $entities = [];
-        $entities[]=new TopicEntity(1,'Test titel','test content',new \DateTime('2019-11-22 13:37:00'));
+        $entities[]=new TopicEntity(1,'Test titel','test content','',new \DateTime('2019-11-22 13:37:00'));
 
         $listTopicMessageStream = new MockListTopicMessageStream();
         $listTopicMessageStream->limit = 1;
@@ -31,8 +31,8 @@ class ViewTopicsUseCaseTest extends TestCase
     }
     public function testListWithLimit(){
         $topics = [];
-        $topics[] = new TopicEntity(1,'Test topic 1','This is an test content 1',new \DateTime());
-        $topics[] = new TopicEntity(2,'Test topic 2','This is an test content 2',new \DateTime());
+        $topics[] = new TopicEntity(1,'Test topic 1','This is an test content 1','',new \DateTime());
+        $topics[] = new TopicEntity(2,'Test topic 2','This is an test content 2','',new \DateTime());
 
         $listTopicMessageStream = new MockListTopicMessageStream();
         $listTopicMessageStream->limit = 1;
@@ -42,8 +42,8 @@ class ViewTopicsUseCaseTest extends TestCase
     }
     public function testListWithOffset(){
         $topics = [];
-        $topics[] = new TopicEntity(1,'Test topic 1','This is an test content 1',new \DateTime());
-        $expectedTopic = new TopicEntity(2,'Test topic 2','This is an test content 2',new \DateTime());
+        $topics[] = new TopicEntity(1,'Test topic 1','This is an test content 1','',new \DateTime());
+        $expectedTopic = new TopicEntity(2,'Test topic 2','This is an test content 2','',new \DateTime());
         $topics[] = $expectedTopic;
         $expectedTopic = new TopicView($expectedTopic);
 
