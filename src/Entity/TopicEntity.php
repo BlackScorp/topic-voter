@@ -12,6 +12,7 @@ class TopicEntity
     private int $id;
     private int $voteCounter = 0;
     private string $slug = "";
+    private string  $title = "";
     /**
      * TopicEntity constructor.
      * @param int $int
@@ -23,24 +24,35 @@ class TopicEntity
     {
         $this->id = $id;
         $this->slug = $slug;
+        $this->title = $titel;
     }
 
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
-    public function increaseVoteCounter(){
+    public function increaseVoteCounter():void{
         $this->voteCounter++;
     }
-    public function decreaseVoteCounter(){
+    public function decreaseVoteCounter():void{
         $this->voteCounter--;
     }
-    public function getSlug(){
+    public function getSlug():string{
         return $this->slug;
     }
 
-    public function getVoteCounter()
+    public function getVoteCounter():int
     {
         return $this->voteCounter;
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+
 }
