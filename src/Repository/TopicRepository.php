@@ -14,4 +14,6 @@ interface TopicRepository
     public function findBySlug(string $slug) : ?TopicEntity;
 
     public function saveOrUpdate(TopicEntity $entity);
+
+    public function add(TopicEntity $entity);
 }

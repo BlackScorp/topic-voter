@@ -50,4 +50,9 @@ class MockTopicRepository implements TopicRepository
        }
     }
 
+    public function add(TopicEntity $entity)
+    {
+        // TODO: Implement add() method.
+    }
+
 }
