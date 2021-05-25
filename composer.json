@@ -30,9 +30,9 @@
       "php composer.phar run-unit-tests",
       "php composer.phar run-phpstan",
       "php composer.phar check-codestyle",
-      "php composer.phar run-unit-tests-coverage",
       "php composer.phar run-mess",
-      "php composer.phar run-psalm"
+      "php composer.phar run-psalm",
+      "php composer.phar run-phpmetrics"
     ],
     "run-unit-tests": "php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml",
     "run-unit-tests-coverage": "php -dxdebug.mode=coverage vendor/phpunit/phpunit/phpunit --coverage-html tmp/coverage --configuration phpunit.xml",
