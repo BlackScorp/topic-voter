@@ -52,9 +52,6 @@ class TopicEntity
         return $this->voteCounter;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;

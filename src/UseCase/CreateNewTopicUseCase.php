@@ -6,6 +6,7 @@ use BlackScorp\TopicVoter\Hydrator\TopicEntityHydrator;
 use BlackScorp\TopicVoter\MessageStream\CreateNewTopicMessageStream;
 use BlackScorp\TopicVoter\Repository\TopicRepository;
 use BlackScorp\TopicVoter\Validator\CreateNewTopicValidator;
+use DateTime;
 
 class CreateNewTopicUseCase
 {
@@ -36,7 +37,7 @@ class CreateNewTopicUseCase
             'title'=>$messageStream->getTitle(),
             'content'=>$messageStream->getContent(),
             'slug'=>$messageStream->getSlug(),
-            'created'=>new \DateTime()
+            'created'=>new DateTime()
         ]);
         $this->repository->add($entity);
         return true;
