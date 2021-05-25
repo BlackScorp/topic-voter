@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BlackScorp\TopicVoter\UseCase;
-
 
 use BlackScorp\TopicVoter\MessageStream\ListTopicMessageStream;
 use BlackScorp\TopicVoter\Repository\TopicRepository;
@@ -10,7 +8,6 @@ use BlackScorp\TopicVoter\View\TopicView;
 
 class ListTopicsUseCase
 {
-
     private TopicRepository $repository;
 
     /**
@@ -23,9 +20,9 @@ class ListTopicsUseCase
     }
 
 
-    public function process(ListTopicMessageStream $listTopicMessageStream):bool
+    public function process(ListTopicMessageStream $listTopicMessageStream): bool
     {
-        $entities = $this->repository->findAll($listTopicMessageStream->getLimit(),$listTopicMessageStream->getOffset());
+        $entities = $this->repository->findAll($listTopicMessageStream->getLimit(), $listTopicMessageStream->getOffset());
         if (count($entities) === 0) {
             return false;
         }

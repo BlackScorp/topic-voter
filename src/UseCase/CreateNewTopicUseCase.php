@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BlackScorp\TopicVoter\UseCase;
-
 
 use BlackScorp\TopicVoter\Hydrator\TopicEntityHydrator;
 use BlackScorp\TopicVoter\MessageStream\CreateNewTopicMessageStream;
@@ -28,9 +26,9 @@ class CreateNewTopicUseCase
         $this->repository = $repository;
     }
 
-    public function process(CreateNewTopicMessageStream $messageStream)
+    public function process(CreateNewTopicMessageStream $messageStream): bool
     {
-        if(!$this->validator->isValid($messageStream)){
+        if (!$this->validator->isValid($messageStream)) {
             return false;
         }
         $entity = $this->topicHydrator->fromArray([

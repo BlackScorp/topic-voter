@@ -1,9 +1,6 @@
 <?php
 
-
 namespace BlackScorp\TopicVoter\UseCase;
-
-
 
 use BlackScorp\TopicVoter\MessageStream\VoteForTopicMessageStream;
 use BlackScorp\TopicVoter\Repository\TopicRepository;
@@ -23,16 +20,16 @@ class VoteForTopicUseCase
     }
 
 
-    public function process(VoteForTopicMessageStream $messageStream):bool
+    public function process(VoteForTopicMessageStream $messageStream): bool
     {
         $entity = $this->topicRepository->findBySlug($messageStream->getSlug());
-        if(!$entity){
+        if (!$entity) {
             return false;
         }
-        if($messageStream->isUpVote()){
+        if ($messageStream->isUpVote()) {
             $entity->increaseVoteCounter();
         }
-        if($messageStream->isDownVote()){
+        if ($messageStream->isDownVote()) {
             $entity->decreaseVoteCounter();
         }
         $topicView = new TopicView($entity);

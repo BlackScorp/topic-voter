@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BlackScorp\TopicVoter\View;
-
 
 use BlackScorp\TopicVoter\Entity\TopicEntity;
 
@@ -22,5 +20,4 @@ class TopicView
         $this->title = $entity->getTitle();
         $this->voteCounter = $entity->getVoteCounter();
     }
-
 }

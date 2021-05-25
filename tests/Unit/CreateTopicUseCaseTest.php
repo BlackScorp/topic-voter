@@ -11,43 +11,43 @@ use PHPUnit\Framework\TestCase;
 
 class CreateTopicUseCaseTest extends TestCase
 {
-        public function testCanCreateNewTopic(){
+    public function testCanCreateNewTopic(): void
+    {
+        $newTopicValidator = $this->getMockBuilder(CreateNewTopicValidator::class)->getMockForAbstractClass();
+        $newTopicValidator->method('validate');
 
-            $newTopicValidator = $this->getMockBuilder(CreateNewTopicValidator::class)->getMockForAbstractClass();
-            $newTopicValidator->method('validate')->willReturn('');
+        $topicHydrator = new TopicEntityHydrator();
 
-            $topicHydrator = new TopicEntityHydrator();
+        $repository = $this->getMockBuilder(TopicRepository::class)->getMock();
+        $repository->method('add');
 
-            $repository = $this->getMockBuilder(TopicRepository::class)->getMock();
-            $repository->method('add')->willReturn(true);
+        $messageStream = $this->getMockBuilder(CreateNewTopicMessageStream::class)->getMock();
+        $messageStream->method('getTitle')->willReturn('testTitle');
+        $messageStream->method('getContent')->willReturn('testContent');
+        $messageStream->method('getSlug')->willReturn('testSlug');
+        $messageStream->method('hasErrors')->willReturn(false);
 
-            $messageStream = $this->getMockBuilder(CreateNewTopicMessageStream::class)->getMock();
-            $messageStream->method('getTitle')->willReturn('testTitle');
-            $messageStream->method('getContent')->willReturn('testContent');
-            $messageStream->method('getSlug')->willReturn('testSlug');
-            $messageStream->method('hasErrors')->willReturn(false);
+        $useCase = new CreateNewTopicUseCase($newTopicValidator, $topicHydrator, $repository);
 
-            $useCase = new CreateNewTopicUseCase($newTopicValidator,$topicHydrator,$repository);
+        $useCase->process($messageStream);
 
-            $useCase->process($messageStream);
+        $this->assertFalse($messageStream->hasErrors());
+    }
 
-            $this->assertFalse($messageStream->hasErrors());
-        }
+    public function testValidationFailed(): void
+    {
+        $newTopicValidator = $this->getMockBuilder(CreateNewTopicValidator::class)->getMockForAbstractClass();
+        $newTopicValidator->method('validate');
 
-        public function testValidationFailed(){
+        $topicHydrator = new TopicEntityHydrator();
 
-            $newTopicValidator = $this->getMockBuilder(CreateNewTopicValidator::class)->getMockForAbstractClass();
-            $newTopicValidator->method('validate')->willReturn('');
+        $repository = $this->getMockBuilder(TopicRepository::class)->getMock();
+        $messageStream = $this->getMockBuilder(CreateNewTopicMessageStream::class)->getMock();
+        $messageStream->method('hasErrors')->willReturn(true);
 
-            $topicHydrator = new TopicEntityHydrator();
+        $useCase = new CreateNewTopicUseCase($newTopicValidator, $topicHydrator, $repository);
 
-            $repository = $this->getMockBuilder(TopicRepository::class)->getMock();
-            $messageStream = $this->getMockBuilder(CreateNewTopicMessageStream::class)->getMock();
-            $messageStream->method('hasErrors')->willReturn(true);
-
-            $useCase = new CreateNewTopicUseCase($newTopicValidator,$topicHydrator,$repository);
-
-            $useCase->process($messageStream);
-            $this->assertTrue($messageStream->hasErrors());
-        }
+        $useCase->process($messageStream);
+        $this->assertTrue($messageStream->hasErrors());
+    }
 }

@@ -1,17 +1,14 @@
 <?php
 
-
 namespace BlackScorp\TopicVoter\MessageStream;
-
 
 interface CreateNewTopicMessageStream
 {
+    public function getTitle(): string;
 
-    public function getTitle();
+    public function getContent(): string;
 
-    public function getContent();
+    public function getSlug(): string;
 
-    public function getSlug();
-
-    public function hasErrors();
+    public function hasErrors(): bool;
 }
