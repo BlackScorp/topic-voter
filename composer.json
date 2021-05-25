@@ -27,20 +27,20 @@
   },
   "scripts": {
     "code-check": [
-      "php composer.phar unit-tests",
-      "php composer.phar analyze",
+      "php composer.phar run-unit-tests",
+      "php composer.phar run-phpstan",
       "php composer.phar check-codestyle",
-      "php composer.phar check-metrics",
-      "php composer.phar detect-mess",
-      "php composer.phar check-psalm"
+      "php composer.phar run-unit-tests-coverage",
+      "php composer.phar run-mess",
+      "php composer.phar run-psalm"
     ],
-    "unit-tests": "php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml",
-    "unit-tests-coverage": "php -dxdebug.mode=coverage vendor/phpunit/phpunit/phpunit --coverage-html tmp/coverage --configuration phpunit.xml",
-    "analyze": "php vendor/phpstan/phpstan/phpstan analyze -c phpstan.neon",
+    "run-unit-tests": "php vendor/phpunit/phpunit/phpunit --configuration phpunit.xml",
+    "run-unit-tests-coverage": "php -dxdebug.mode=coverage vendor/phpunit/phpunit/phpunit --coverage-html tmp/coverage --configuration phpunit.xml",
+    "run-phpstan": "php vendor/phpstan/phpstan/phpstan analyze -c phpstan.neon",
     "fix-codestyle": "php vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config .php-cs",
     "check-codestyle": "php vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config .php-cs --dry-run",
-    "check-metrics": "php vendor/phpmetrics/phpmetrics/bin/phpmetrics --config=phpmetrics.json --junit=tmp/junit.xml",
-    "detect-mess": "php vendor/phpmd/phpmd/src/bin/phpmd src text phpmd.rules.xml",
-    "check-psalm": "php vendor/vimeo/psalm/psalm --output-format=console --config psalm.xml"
+    "run-phpmetrics": "php vendor/phpmetrics/phpmetrics/bin/phpmetrics --config=phpmetrics.json --junit=tmp/junit.xml --quiet",
+    "run-mess": "php vendor/phpmd/phpmd/src/bin/phpmd src text phpmd.rules.xml",
+    "run-psalm": "php vendor/vimeo/psalm/psalm --output-format=console --config psalm.xml"
   }
 }

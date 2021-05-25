@@ -9,7 +9,7 @@
   },
   "plugins": {
     "junit": {
-      "file": "./tmp/junit.xml"
+      "file": "tmp/junit.xml"
     }
   }
 }
