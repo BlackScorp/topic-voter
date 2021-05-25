@@ -1,0 +1,15 @@
+{
+  "includes": [
+    "src"
+  ],
+  "report": {
+    "html": "tmp/report/",
+    "json": "tmp/report.json",
+    "violations": "tmp/violations.xml"
+  },
+  "plugins": {
+    "junit": {
+      "file": "./tmp/junit.xml"
+    }
+  }
+}
