@@ -9,6 +9,10 @@ use BlackScorp\TopicVoter\UseCase\CreateNewTopicUseCase;
 use BlackScorp\TopicVoter\Validator\CreateNewTopicValidator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversDefaultClass \BlackScorp\TopicVoter\UseCase\CreateNewTopicUseCase
+ */
 class CreateTopicUseCaseTest extends TestCase
 {
     public function testCanCreateNewTopic(): void

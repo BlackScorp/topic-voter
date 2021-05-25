@@ -9,6 +9,10 @@ use BlackScorp\TopicVoter\UseCase\ListTopicsUseCase;
 use BlackScorp\TopicVoter\View\TopicView;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversDefaultClass \BlackScorp\TopicVoter\UseCase\ListTopicsUseCase
+ */
 class ViewTopicsUseCaseTest extends TestCase
 {
     public function testTopicListIsEmpty(): void
@@ -21,13 +25,14 @@ class ViewTopicsUseCaseTest extends TestCase
     public function testListHasAnEntry(): void
     {
         $entities = [];
-        $entities[]=new TopicEntity(1, 'Test titel', 'test content', '', new \DateTime('2019-11-22 13:37:00'));
+        $entities[] = new TopicEntity(1, 'Test titel', 'test content', '', new \DateTime('2019-11-22 13:37:00'));
 
         $listTopicMessageStream = new MockListTopicMessageStream();
         $listTopicMessageStream->limit = 1;
         $this->executeUseCase($listTopicMessageStream, $entities);
         $this->assertNotEmpty($listTopicMessageStream->topics);
     }
+
     public function testListWithLimit(): void
     {
         $topics = [];
@@ -40,6 +45,7 @@ class ViewTopicsUseCaseTest extends TestCase
         $this->assertNotEmpty($listTopicMessageStream->topics);
         $this->assertCount(1, $listTopicMessageStream->topics);
     }
+
     public function testListWithOffset(): void
     {
         $topics = [];
@@ -59,8 +65,8 @@ class ViewTopicsUseCaseTest extends TestCase
         $this->assertEquals($expectedTopic, $actualTopic);
         $this->assertSame($expectedTopic->id, $actualTopic->id);
     }
+
     /**
-     * @param MockListTopicMessageStream $listTopicMessageStream
      * @param TopicEntity[] $entites
      */
     public function executeUseCase(MockListTopicMessageStream $listTopicMessageStream, array $entites = []): void

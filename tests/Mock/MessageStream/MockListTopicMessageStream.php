@@ -13,9 +13,10 @@ class MockListTopicMessageStream implements ListTopicMessageStream
     public array $topics = [];
     public int $limit = 0;
     public int $offset = 0;
+
     public function addTopic(TopicView $view): void
     {
-        $this->topics[]=$view;
+        $this->topics[] = $view;
     }
 
     public function getLimit(): int

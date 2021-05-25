@@ -12,18 +12,16 @@ class ListTopicsUseCase
 
     /**
      * ListTopicsUseCase constructor.
-     * @param TopicRepository $repository
      */
     public function __construct(TopicRepository $repository)
     {
         $this->repository = $repository;
     }
 
-
     public function process(ListTopicMessageStream $listTopicMessageStream): bool
     {
         $entities = $this->repository->findAll($listTopicMessageStream->getLimit(), $listTopicMessageStream->getOffset());
-        if (count($entities) === 0) {
+        if (0 === count($entities)) {
             return false;
         }
         foreach ($entities as $entity) {

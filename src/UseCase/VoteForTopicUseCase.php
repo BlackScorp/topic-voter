@@ -12,13 +12,11 @@ class VoteForTopicUseCase
 
     /**
      * VoteForTopicUseCase constructor.
-     * @param TopicRepository $topicRepository
      */
     public function __construct(TopicRepository $topicRepository)
     {
         $this->topicRepository = $topicRepository;
     }
-
 
     public function process(VoteForTopicMessageStream $messageStream): bool
     {
@@ -35,6 +33,7 @@ class VoteForTopicUseCase
         $topicView = new TopicView($entity);
         $messageStream->setTopic($topicView);
         $this->topicRepository->saveOrUpdate($entity);
+
         return true;
     }
 }

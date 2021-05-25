@@ -16,9 +16,6 @@ class CreateNewTopicUseCase
 
     /**
      * CreateNewTopicUseCase constructor.
-     * @param CreateNewTopicValidator $validator
-     * @param TopicEntityHydrator $topicHydrator
-     * @param TopicRepository $repository
      */
     public function __construct(CreateNewTopicValidator $validator, TopicEntityHydrator $topicHydrator, TopicRepository $repository)
     {
@@ -33,13 +30,14 @@ class CreateNewTopicUseCase
             return false;
         }
         $entity = $this->topicHydrator->fromArray([
-            'id'=>0,
-            'title'=>$messageStream->getTitle(),
-            'content'=>$messageStream->getContent(),
-            'slug'=>$messageStream->getSlug(),
-            'created'=>new DateTime()
+            'id' => 0,
+            'title' => $messageStream->getTitle(),
+            'content' => $messageStream->getContent(),
+            'slug' => $messageStream->getSlug(),
+            'created' => new DateTime(),
         ]);
         $this->repository->add($entity);
+
         return true;
     }
 }

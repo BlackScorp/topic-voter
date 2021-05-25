@@ -8,7 +8,7 @@ use BlackScorp\TopicVoter\View\TopicView;
 class MockVoteForTopicMessageStream implements VoteForTopicMessageStream
 {
     public ?TopicView $topic = null;
-    public string $slug = "";
+    public string $slug = '';
     public bool $isUpVote = false;
     public bool $isDownVote = false;
 

@@ -15,11 +15,6 @@ class TopicEntity
 
     /**
      * TopicEntity constructor.
-     * @param int $id
-     * @param string $title
-     * @param string $text
-     * @param string $slug
-     * @param DateTime $created
      */
     public function __construct(int $id, string $title, string $text, string $slug, DateTime $created)
     {
@@ -34,14 +29,17 @@ class TopicEntity
     {
         return $this->id;
     }
+
     public function increaseVoteCounter(): void
     {
-        $this->voteCounter++;
+        ++$this->voteCounter;
     }
+
     public function decreaseVoteCounter(): void
     {
-        $this->voteCounter--;
+        --$this->voteCounter;
     }
+
     public function getSlug(): string
     {
         return $this->slug;

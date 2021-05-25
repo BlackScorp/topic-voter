@@ -12,9 +12,9 @@ class MockTopicRepository implements TopicRepository
      */
     private array $entities = [];
 
-
     /**
      * MockTopicRepository constructor.
+     *
      * @param TopicEntity[] $entites
      */
     public function __construct(array $entites = [])
@@ -23,8 +23,6 @@ class MockTopicRepository implements TopicRepository
     }
 
     /**
-     * @param int $limit
-     * @param int $offset
      * @return TopicEntity[]
      */
     public function findAll(int $limit, int $offset): array
@@ -39,6 +37,7 @@ class MockTopicRepository implements TopicRepository
                 return $entity;
             }
         }
+
         return null;
     }
 

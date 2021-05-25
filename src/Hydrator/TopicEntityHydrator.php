@@ -11,8 +11,6 @@ class TopicEntityHydrator
      */
     public function fromArray(array $data): TopicEntity
     {
-        $entity = new TopicEntity($data['id'], $data['title'], $data['content'], $data['slug'], $data['created']);
-
-        return $entity;
+        return new TopicEntity($data['id'], $data['title'], $data['content'], $data['slug'], $data['created']);
     }
 }
