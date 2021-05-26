@@ -8,6 +8,10 @@ $config = new PhpCsFixer\Config();
 return $config->setRules([
                              '@PSR12' => true,
                              '@PhpCsFixer' => true,
+                             'declare_strict_types'=>true,
+                             'blank_line_after_opening_tag'=>false,
+                             'linebreak_after_opening_tag'=>false,
+                             'yoda_style'=>true,
                              'strict_param' => true,
                              'array_syntax' => ['syntax' => 'short'],
                          ])

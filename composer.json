@@ -21,7 +21,7 @@
     "phpunit/phpunit": "^9.5",
     "phpstan/phpstan": "^0.12.88",
     "phpmetrics/phpmetrics": "^2.7",
-    "friendsofphp/php-cs-fixer": "^3",
+    "friendsofphp/php-cs-fixer": "^2",
     "phpmd/phpmd": "^2.10",
     "vimeo/psalm": "^4.7"
   },
